@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>NAVA | موسیقی من</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#08070d;
+    color:#fff;
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+}
+
+header{
+    padding:28px 22px 18px;
+    text-align:center;
+}
+
+.logo{
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#a43cff;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-top:8px;
+    font-size:15px;
+}
+
+.hero{
+    margin:0 14px;
+    padding:38px 20px 32px;
+    border-radius:0 0 45px 45px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%,#a92dff,transparent 35%),
+      linear-gradient(135deg,#29104c,#7020d8,#32105e);
+    box-shadow:0 15px 45px rgba(120,20,255,.22);
+}
+
+.hero h1{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:18px;
+    color:#ddd;
+}
+
+.search{
+    margin:25px 20px 20px;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    background:#15141d;
+    border:1px solid #292735;
+    color:#fff;
+    padding:18px 55px 18px 18px;
+    border-radius:22px;
+    outline:none;
+    font-size:16px;
+}
+
+.search input:focus{
+    border-color:#a43cff;
+    box-shadow:0 0 20px rgba(164,60,255,.15);
+}
+
+.search-icon{
+    position:absolute;
+    right:18px;
+    top:13px;
+    font-size:25px;
+}
+
+.categories{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding:5px 20px 20px;
+    scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
+}
+
+.category{
+    flex:0 0 auto;
+    padding:13px 23px;
+    border-radius:30px;
+    border:1px solid #2c2936;
+    background:#15141d;
+    color:#aaa;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.category.active{
+    background:linear-gradient(135deg,#8d2eff,#b43dff);
+    color:white;
+    border-color:transparent;
+}
+
+.section{
+    padding:10px 20px;
+}
+
+.section-title{
+    font-size:25px;
+    margin:12px 0 7px;
+}
+
+.section-subtitle{
+    color:#777;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.feature{
+    padding:30px 24px;
+    border-radius:28px;
+    background:
+      radial-gradient(circle at 20% 20%,#b42cff,transparent 35%),
+      linear-gradient(135deg,#191023,#271044,#4b16a0);
+    border:1px solid #322044;
+    margin-bottom:28px;
+}
+
+.feature h2{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.feature p{
+    color:#ddd;
+    line-height:1.9;
+}
+
+#songs{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.song{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:15px;
+    background:#14131a;
+    border:1px solid #292732;
+    border-radius:24px;
+    transition:.2s;
+}
+
+.song:hover{
+    transform:translateY(-2px);
+    border-color:#8632d8;
+}
+
+.cover{
+    width:78px;
+    height:78px;
+    flex-shrink:0;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    background:linear-gradient(135deg,#8e2fff,#d52cff);
+}
+
+.song-info{
+    flex:1;
+    min-width:0;
+}
+
+.song-name{
+    font-size:16px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    direction:ltr;
+    text-align:right;
+}
+
+.song-type{
+    color:#888;
+    margin-top:8px;
+    font-size:13px;
+}
+
+.play{
+    width:52px;
+    height:52px;
+    flex-shrink:0;
+    border:0;
+    border-radius:50%;
+    background:linear-gradient(135deg,#9131ff,#bb35ff);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.play:active{
+    transform:scale(.92);
+}
+
+.empty{
+    text-align:center;
+    color:#888;
+    padding:40px 10px;
+}
+
+.player{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:12px 18px;
+    background:rgba(15,14,21,.96);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #292633;
+    display:none;
+    align-items:center;
+    gap:14px;
+    z-index:100;
+}
+
+.player-info{
+    flex:1;
+    overflow:hidden;
+}
+
+.player-name{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:14px;
+}
+
+.player-status{
+    color:#8d4bff;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.close-player{
+    background:none;
+    color:#aaa;
+    border:0;
+    font-size:20px;
+}
+
+footer{
+    height:100px;
+}
+
+@media(max-width:420px){
+    .hero h1{
+        font-size:29px;
+    }
+
+    .song{
+        padding:12px;
+    }
+
+    .cover{
+        width:70px;
+        height:70px;
+    }
+
+    .play{
+        width:48px;
+        height:48px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🎵 <span>NAVA</span></div>
+    <div class="subtitle">موسیقی رو زندگی کن</div>
+</header>
+
+<section class="hero">
+    <h1>🎧 موسیقی خوب، حال خوب</h1>
+    <p>آهنگ‌های مورد علاقه‌ات رو پیدا کن و گوش بده</p>
+</section>
+
+<div class="search">
+    <span class="search-icon">🔎</span>
+    <input
+        id="search"
+        type="text"
+        placeholder="جستجوی آهنگ یا خواننده..."
+        autocomplete="off"
+    >
+</div>
+
+<div class="categories">
+    <button class="category active" data-category="all">همه</button>
+    <button class="category" data-category="new">جدیدترین</button>
+    <button class="category" data-category="popular">محبوب</button>
+    <button class="category" data-category="iranian">ایرانی</button>
+</div>
+
+<section class="section">
+
+    <h2 class="section-title">پیشنهاد NAVA</h2>
+
+    <div class="feature">
+        <h2>🎧 موسیقی خوب، حال خوب</h2>
+        <p>
+            آهنگ‌های مورد علاقه‌ات رو پیدا کن،
+            پخش کن و از موسیقی لذت ببر.
+        </p>
+    </div>
+
+    <h2 class="section-title">محبوب‌ترین‌ها</h2>
+    <p class="section-subtitle">آهنگ‌هایی که بیشتر شنیده شده‌اند</p>
+
+    <div id="songs">
+        <div class="empty">در حال بارگذاری آهنگ‌ها...</div>
+    </div>
+
+</section>
+
+<footer></footer>
+
+<div class="player" id="player">
+    <button class="close-player" onclick="closePlayer()">×</button>
+
+    <div class="player-info">
+        <div class="player-name" id="playerName"></div>
+        <div class="player-status">در حال پخش 🎵</div>
+    </div>
+
+    <button class="play" id="playerButton" onclick="toggleAudio()">❚❚</button>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const songsBox = document.getElementById("songs");
+const search = document.getElementById("search");
+const audio = document.getElementById("audio");
+const player = document.getElementById("player");
+const playerName = document.getElementById("playerName");
+const playerButton = document.getElementById("playerButton");
+
+let songs = [];
+let currentIndex = -1;
+
+async function loadSongs(){
+
+    try{
+
+        const response = await fetch("/songs.json");
+
+        if(!response.ok){
+            throw new Error("songs.json not found");
+        }
+
+        songs = await response.json();
+
+        renderSongs(songs);
+
+    }catch(error){
+
+        console.error(error);
+
+        songsBox.innerHTML = `
+            <div class="empty">
+                آهنگی پیدا نشد 🎵
+            </div>
+        `;
+    }
+}
+
+function renderSongs(list){
+
+    if(!list.length){
+
+        songsBox.innerHTML = `
+            <div class="empty">
+                آهنگی با این مشخصات پیدا نشد 🔎
+            </div>
+        `;
+
+        return;
+    }
+
+    songsBox.innerHTML = "";
+
+    list.forEach((song,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "song";
+
+        item.innerHTML = `
+            <button class="play" onclick="playSong(${index})">
+                ▶
+            </button>
+
+            <div class="song-info">
+                <div class="song-name">${escapeHtml(song.name)}</div>
+                <div class="song-type">موزیک</div>
+            </div>
+
+            <div class="cover">🎵</div>
+        `;
+
+        songsBox.appendChild(item);
+    });
+}
+
+function playSong(index){
+
+    if(!songs[index]) return;
+
+    currentIndex = index;
+
+    const song = songs[index];
+
+    audio.src = "/music/" + encodeURIComponent(song.file);
+
+    playerName.textContent = song.name;
+
+    player.style.display = "flex";
+
+    audio.play()
+        .then(()=>{
+            playerButton.textContent = "❚❚";
+        })
+        .catch(()=>{
+            playerButton.textContent = "▶";
+        });
+}
+
+function toggleAudio(){
+
+    if(audio.paused){
+
+        audio.play();
+
+        playerButton.textContent = "❚❚";
+
+    }else{
+
+        audio.pause();
+
+        playerButton.textContent = "▶";
+    }
+}
+
+function closePlayer(){
+
+    audio.pause();
+
+    audio.src = "";
+
+    player.style.display = "none";
+}
+
+audio.addEventListener("ended",()=>{
+
+    if(currentIndex + 1 < songs.length){
+
+        playSong(currentIndex + 1);
+
+    }else{
+
+        playerButton.textContent = "▶";
+    }
+});
+
+search.addEventListener("input",()=>{
+
+    const value = search.value.trim().toLowerCase();
+
+    const filtered = songs.filter(song =>
+        song.name.toLowerCase().includes(value)
+    );
+
+    renderSongs(filtered);
+});
+
+document.querySelectorAll(".category").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        document
+            .querySelectorAll(".category")
+            .forEach(b=>b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        /*
+         * فعلاً همه آهنگ‌ها از یک پوشه می‌آیند.
+         * وقتی دسته‌بندی واقعی اضافه کنیم همین بخش
+         * بدون دست زدن به ظاهر سایت قابل توسعه است.
+         */
+
+        renderSongs(songs);
+    });
+
+});
+
+function escapeHtml(text){
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+loadSongs();
+</script>
+
+
+<style>
+.bottom-menu{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  background:rgba(20,18,27,.97);
+  border-top:1px solid #33303d;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:99999;
+  direction:rtl;
+  box-shadow:0 -5px 20px rgba(0,0,0,.35);
+}
+.bottom-menu a{
+  flex:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  color:#aaa;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+}
+.bottom-menu a span{
+  font-size:24px;
+  line-height:1;
+}
+.bottom-menu a.active,
+.bottom-menu a:hover{
+  color:#b52cff;
+}
+body{
+  padding-bottom:85px !important;
+}
+</style>
+
+<nav class="bottom-menu">
+  <a href="/" class="active">
+    <span>🏠</span>
+    خانه
+  </a>
+  <a href="#search">
+    <span>🔎</span>
+    جستجو
+  </a>
+  <a href="#favorites">
+    <span>❤️</span>
+    محبوب‌ها
+  </a>
+  <a href="#music">
+    <span>🎵</span>
+    آهنگ‌ها
+  </a>
+</nav>
+
+</body>
+</html>
