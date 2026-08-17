@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NAVA | موسیقی من</title>
+<title>NAVA | موزیک حال خوب</title>
+
+<meta name="description" content="NAVA - سایت موزیک برای پیدا کردن آهنگ‌های محبوب، جدید و ایرانی">
+<meta name="theme-color" content="#8b2cff">
 
 <style>
 *{
@@ -13,88 +16,180 @@
     padding:0;
 }
 
-body{
-    background:#08070d;
-    color:#fff;
-    font-family:Tahoma,Arial,sans-serif;
-    min-height:100vh;
+:root{
+    --accent:#9b2cff;
+    --accent2:#5920ff;
+    --bg:#07070d;
+    --card:#151520;
+    --card2:#1c1c29;
+    --text:#ffffff;
+    --muted:#aaaabc;
+    --border:rgba(255,255,255,.10);
+    --shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 0%,rgba(155,44,255,.18),transparent 35%),
+        radial-gradient(circle at 90% 20%,rgba(89,32,255,.14),transparent 35%),
+        var(--bg);
+    color:var(--text);
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+    font-size:16px;
+    padding-bottom:100px;
+    transition:
+        background .3s,
+        color .3s;
+}
+
+/* LIGHT MODE */
+
+body.light{
+    --bg:#f4f3fa;
+    --card:#ffffff;
+    --card2:#eeeefa;
+    --text:#171722;
+    --muted:#666678;
+    --border:rgba(0,0,0,.10);
+    --shadow:0 15px 40px rgba(0,0,0,.10);
+
+    background:
+        radial-gradient(circle at 10% 0%,rgba(155,44,255,.15),transparent 35%),
+        #f4f3fa;
+}
+
+/* HEADER */
+
 header{
-    padding:28px 22px 18px;
+    padding:25px 20px 18px;
     text-align:center;
+    position:relative;
 }
 
 .logo{
-    font-size:38px;
+    font-size:32px;
     font-weight:900;
-    letter-spacing:1px;
+    letter-spacing:2px;
 }
 
 .logo span{
-    color:#a43cff;
+    color:var(--accent);
 }
 
 .subtitle{
-    color:#aaa;
-    margin-top:8px;
-    font-size:15px;
+    color:var(--muted);
+    margin-top:7px;
+    font-size:14px;
 }
 
+/* SETTINGS BUTTON */
+
+.settings-button{
+    position:absolute;
+    left:16px;
+    top:20px;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.settings-button:hover{
+    transform:rotate(25deg) scale(1.05);
+    border-color:var(--accent);
+}
+
+/* HERO */
+
 .hero{
-    margin:0 14px;
-    padding:38px 20px 32px;
-    border-radius:0 0 45px 45px;
-    text-align:center;
+    margin:10px 14px 20px;
+    padding:28px 22px;
+    border-radius:30px;
     background:
-      radial-gradient(circle at 20% 20%,#a92dff,transparent 35%),
-      linear-gradient(135deg,#29104c,#7020d8,#32105e);
-    box-shadow:0 15px 45px rgba(120,20,255,.22);
+        radial-gradient(circle at 20% 15%,rgba(255,255,255,.25),transparent 20%),
+        linear-gradient(135deg,#7b16d9,#9d28ff,#32158b);
+    box-shadow:
+        0 20px 60px rgba(126,20,220,.30);
+    overflow:hidden;
+    position:relative;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+    left:-80px;
+    bottom:-100px;
 }
 
 .hero h1{
-    font-size:34px;
+    font-size:27px;
     margin-bottom:12px;
 }
 
 .hero p{
-    font-size:18px;
-    color:#ddd;
+    color:#eee;
+    line-height:1.9;
+    font-size:14px;
 }
 
-.search{
-    margin:25px 20px 20px;
+/* SEARCH */
+
+.search-box{
+    margin:20px 14px;
     position:relative;
 }
 
-.search input{
+.search-box input{
     width:100%;
-    background:#15141d;
-    border:1px solid #292735;
-    color:#fff;
-    padding:18px 55px 18px 18px;
-    border-radius:22px;
+    height:58px;
+    border-radius:25px;
+    border:1px solid var(--border);
     outline:none;
-    font-size:16px;
+    background:var(--card);
+    color:var(--text);
+    padding:0 52px 0 20px;
+    font-size:15px;
+    box-shadow:var(--shadow);
+    transition:.25s;
 }
 
-.search input:focus{
-    border-color:#a43cff;
-    box-shadow:0 0 20px rgba(164,60,255,.15);
+.search-box input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 4px rgba(155,44,255,.12);
 }
 
 .search-icon{
     position:absolute;
     right:18px;
-    top:13px;
+    top:15px;
     font-size:25px;
 }
 
+/* CATEGORIES */
+
 .categories{
     display:flex;
-    gap:12px;
+    gap:10px;
     overflow-x:auto;
-    padding:5px 20px 20px;
+    padding:4px 14px 15px;
     scrollbar-width:none;
 }
 
@@ -104,48 +199,59 @@ header{
 
 .category{
     flex:0 0 auto;
-    padding:13px 23px;
-    border-radius:30px;
-    border:1px solid #2c2936;
-    background:#15141d;
-    color:#aaa;
-    font-size:15px;
+    padding:13px 22px;
+    border-radius:22px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--muted);
     cursor:pointer;
+    transition:.25s;
+}
+
+.category:hover{
+    transform:translateY(-2px);
 }
 
 .category.active{
-    background:linear-gradient(135deg,#8d2eff,#b43dff);
-    color:white;
+    color:#fff;
     border-color:transparent;
+    background:
+        linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 10px 30px rgba(140,30,255,.25);
 }
 
+/* SECTIONS */
+
 .section{
-    padding:10px 20px;
+    padding:10px 14px;
 }
 
 .section-title{
-    font-size:25px;
-    margin:12px 0 7px;
+    font-size:23px;
+    margin:20px 4px 7px;
 }
 
 .section-subtitle{
-    color:#777;
-    font-size:14px;
-    margin-bottom:20px;
+    color:var(--muted);
+    font-size:13px;
+    margin:0 4px 18px;
 }
 
+/* FEATURE */
+
 .feature{
-    padding:30px 24px;
+    padding:25px;
     border-radius:28px;
     background:
-      radial-gradient(circle at 20% 20%,#b42cff,transparent 35%),
-      linear-gradient(135deg,#191023,#271044,#4b16a0);
-    border:1px solid #322044;
-    margin-bottom:28px;
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.14),transparent 30%),
+        linear-gradient(135deg,#261143,#751bd2);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
 }
 
 .feature h2{
-    font-size:25px;
+    font-size:22px;
     margin-bottom:10px;
 }
 
@@ -154,38 +260,42 @@ header{
     line-height:1.9;
 }
 
-#songs{
+/* SONG LIST */
+
+.songs{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
 }
 
 .song{
     display:flex;
     align-items:center;
-    gap:14px;
-    padding:15px;
-    background:#14131a;
-    border:1px solid #292732;
-    border-radius:24px;
-    transition:.2s;
+    gap:12px;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:22px;
+    background:var(--card);
+    transition:.25s;
 }
 
 .song:hover{
     transform:translateY(-2px);
-    border-color:#8632d8;
+    border-color:rgba(155,44,255,.45);
 }
 
 .cover{
-    width:78px;
-    height:78px;
+    width:65px;
+    height:65px;
     flex-shrink:0;
-    border-radius:20px;
+    border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:35px;
-    background:linear-gradient(135deg,#8e2fff,#d52cff);
+    font-size:28px;
+    background:
+        linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
 
 .song-info{
@@ -194,126 +304,462 @@ header{
 }
 
 .song-name{
-    font-size:16px;
     font-weight:bold;
+    font-size:15px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    direction:ltr;
-    text-align:right;
 }
 
 .song-type{
-    color:#888;
-    margin-top:8px;
-    font-size:13px;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:7px;
 }
 
-.play{
-    width:52px;
-    height:52px;
-    flex-shrink:0;
-    border:0;
+.song-actions{
+    display:flex;
+    gap:7px;
+}
+
+.song-btn{
+    width:42px;
+    height:42px;
     border-radius:50%;
-    background:linear-gradient(135deg,#9131ff,#bb35ff);
-    color:white;
-    font-size:22px;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
     cursor:pointer;
+    font-size:18px;
 }
 
-.play:active{
-    transform:scale(.92);
+.song-btn.play{
+    color:#fff;
+    border:0;
+    background:
+        linear-gradient(135deg,var(--accent),var(--accent2));
 }
+
+/* EMPTY */
 
 .empty{
     text-align:center;
-    color:#888;
-    padding:40px 10px;
+    color:var(--muted);
+    padding:45px 10px;
+    line-height:2;
 }
+
+/* BOTTOM MENU */
+
+.bottom-menu{
+    position:fixed;
+    right:0;
+    left:0;
+    bottom:0;
+    height:78px;
+    background:rgba(15,15,24,.92);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-top:1px solid var(--border);
+    display:flex;
+    z-index:9999;
+    box-shadow:0 -10px 35px rgba(0,0,0,.25);
+}
+
+body.light .bottom-menu{
+    background:rgba(255,255,255,.92);
+}
+
+.bottom-menu a{
+    flex:1;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    text-decoration:none;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:bold;
+}
+
+.bottom-menu a span:first-child{
+    font-size:23px;
+}
+
+.bottom-menu a.active,
+.bottom-menu a:hover{
+    color:var(--accent);
+}
+
+/* PLAYER */
 
 .player{
     position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    padding:12px 18px;
-    background:rgba(15,14,21,.96);
-    backdrop-filter:blur(15px);
-    border-top:1px solid #292633;
+    right:10px;
+    left:10px;
+    bottom:88px;
+    padding:13px;
+    border-radius:24px;
+    background:rgba(22,22,33,.96);
+    backdrop-filter:blur(18px);
+    border:1px solid var(--border);
     display:none;
     align-items:center;
-    gap:14px;
-    z-index:100;
+    gap:12px;
+    z-index:9000;
+    box-shadow:var(--shadow);
+}
+
+body.light .player{
+    background:rgba(255,255,255,.96);
+}
+
+.player.show{
+    display:flex;
+}
+
+.player-cover{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    font-size:23px;
+    flex-shrink:0;
 }
 
 .player-info{
     flex:1;
-    overflow:hidden;
+    min-width:0;
 }
 
 .player-name{
+    font-size:14px;
+    font-weight:bold;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    font-size:14px;
 }
 
 .player-status{
-    color:#8d4bff;
-    font-size:12px;
+    font-size:11px;
+    color:var(--muted);
     margin-top:5px;
 }
 
-.close-player{
-    background:none;
-    color:#aaa;
+.player-buttons{
+    display:flex;
+    gap:5px;
+}
+
+.player-button{
+    width:38px;
+    height:38px;
     border:0;
+    border-radius:50%;
+    background:var(--card2);
+    color:var(--text);
+    cursor:pointer;
+}
+
+.player-button.main{
+    color:white;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+
+.progress{
+    position:absolute;
+    right:14px;
+    left:14px;
+    bottom:4px;
+    height:3px;
+    background:rgba(255,255,255,.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:var(--accent);
+}
+
+/* SETTINGS PANEL */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(5px);
+    z-index:10000;
+    display:none;
+}
+
+.overlay.show{
+    display:block;
+}
+
+.settings-panel{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    max-height:88vh;
+    overflow-y:auto;
+    background:var(--card);
+    border-radius:30px 30px 0 0;
+    padding:24px 18px 35px;
+    z-index:10001;
+    transform:translateY(100%);
+    transition:.3s;
+}
+
+.settings-panel.show{
+    transform:translateY(0);
+}
+
+.settings-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.settings-header h2{
+    font-size:22px;
+}
+
+.close-settings{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
     font-size:20px;
 }
 
-footer{
-    height:100px;
+.setting{
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
 }
 
-@media(max-width:420px){
-    .hero h1{
-        font-size:29px;
+.setting-title{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.setting-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-bottom:12px;
+}
+
+.switch-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.switch{
+    width:54px;
+    height:30px;
+    border-radius:30px;
+    background:#444;
+    position:relative;
+    cursor:pointer;
+}
+
+.switch:after{
+    content:"";
+    position:absolute;
+    width:24px;
+    height:24px;
+    top:3px;
+    right:3px;
+    border-radius:50%;
+    background:#fff;
+    transition:.25s;
+}
+
+.switch.on{
+    background:var(--accent);
+}
+
+.switch.on:after{
+    transform:translateX(-24px);
+}
+
+.range{
+    width:100%;
+    accent-color:var(--accent);
+}
+
+.colors{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.color{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:3px solid transparent;
+    cursor:pointer;
+}
+
+.color.active{
+    border-color:var(--text);
+    transform:scale(1.1);
+}
+
+.color-purple{
+    background:linear-gradient(135deg,#9b2cff,#5920ff);
+}
+
+.color-blue{
+    background:linear-gradient(135deg,#168cff,#164cff);
+}
+
+.color-pink{
+    background:linear-gradient(135deg,#ff3cac,#784ba0);
+}
+
+.color-green{
+    background:linear-gradient(135deg,#00c853,#00a896);
+}
+
+.color-orange{
+    background:linear-gradient(135deg,#ff9800,#ff3d00);
+}
+
+.reset{
+    width:100%;
+    height:50px;
+    border-radius:18px;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    font-weight:bold;
+    margin-top:20px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:95px;
+    transform:translateX(-50%) translateY(20px);
+    padding:13px 20px;
+    border-radius:18px;
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--text);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:20000;
+    box-shadow:var(--shadow);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* ANIMATION */
+
+.animations .song,
+.animations .feature,
+.animations .hero{
+    animation:fadeUp .5s ease both;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(min-width:700px){
+
+    body{
+        max-width:900px;
+        margin:auto;
     }
 
-    .song{
-        padding:12px;
+    .songs{
+        display:grid;
+        grid-template-columns:1fr 1fr;
     }
 
-    .cover{
-        width:70px;
-        height:70px;
+    .bottom-menu{
+        max-width:900px;
+        margin:auto;
+        right:50%;
+        transform:translateX(50%);
     }
 
-    .play{
-        width:48px;
-        height:48px;
+    .player{
+        max-width:700px;
+        right:50%;
+        transform:translateX(50%);
+    }
+
+    .settings-panel{
+        max-width:600px;
+        right:50%;
+        transform:translate(50%,100%);
+    }
+
+    .settings-panel.show{
+        transform:translate(50%,0);
     }
 }
 </style>
 </head>
 
-<body>
+<body class="animations">
 
 <header>
-    <div class="logo">🎵 <span>NAVA</span></div>
-    <div class="subtitle">موسیقی رو زندگی کن</div>
+    <button class="settings-button" onclick="openSettings()">⚙️</button>
+
+    <div class="logo">
+        <span>NAVA</span> موزیک
+    </div>
+
+    <div class="subtitle">
+        آهنگ‌های مورد علاقت رو پیدا کن 🎧
+    </div>
 </header>
 
 <section class="hero">
     <h1>🎧 موسیقی خوب، حال خوب</h1>
-    <p>آهنگ‌های مورد علاقه‌ات رو پیدا کن و گوش بده</p>
+    <p>
+        آهنگ‌های مورد علاقت رو پیدا کن، گوش بده
+        و لحظه‌هات رو با موسیقی قشنگ‌تر کن.
+    </p>
 </section>
 
-<div class="search">
+<div class="search-box">
     <span class="search-icon">🔎</span>
     <input
         id="search"
-        type="text"
+        type="search"
         placeholder="جستجوی آهنگ یا خواننده..."
         autocomplete="off"
     >
@@ -324,66 +770,336 @@ footer{
     <button class="category" data-category="new">جدیدترین</button>
     <button class="category" data-category="popular">محبوب</button>
     <button class="category" data-category="iranian">ایرانی</button>
+    <button class="category" data-category="favorites">❤️ موردعلاقه‌ها</button>
 </div>
 
-<section class="section">
+<section class="section" id="home">
 
-    <h2 class="section-title">پیشنهاد NAVA</h2>
+    <h2 class="section-title">
+        پیشنهاد NAVA
+    </h2>
 
     <div class="feature">
-        <h2>🎧 موسیقی خوب، حال خوب</h2>
+        <h2>🎶 حال خوب با موسیقی</h2>
         <p>
-            آهنگ‌های مورد علاقه‌ات رو پیدا کن،
+            آهنگ مورد علاقت رو انتخاب کن،
             پخش کن و از موسیقی لذت ببر.
         </p>
     </div>
 
-    <h2 class="section-title">محبوب‌ترین‌ها</h2>
-    <p class="section-subtitle">آهنگ‌هایی که بیشتر شنیده شده‌اند</p>
+    <h2 class="section-title">
+        محبوب‌ترین‌ها
+    </h2>
 
-    <div id="songs">
-        <div class="empty">در حال بارگذاری آهنگ‌ها...</div>
+    <p class="section-subtitle">
+        آهنگ‌هایی که بیشتر شنیده شده‌اند
+    </p>
+
+    <div id="songs" class="songs">
+        <div class="empty">
+            در حال دریافت آهنگ‌ها...
+        </div>
     </div>
 
 </section>
 
-<footer></footer>
+<!-- PLAYER -->
 
-<div class="player" id="player">
-    <button class="close-player" onclick="closePlayer()">×</button>
+<div id="player" class="player">
 
-    <div class="player-info">
-        <div class="player-name" id="playerName"></div>
-        <div class="player-status">در حال پخش 🎵</div>
+    <div class="player-cover">
+        🎵
     </div>
 
-    <button class="play" id="playerButton" onclick="toggleAudio()">❚❚</button>
+    <div class="player-info">
+        <div id="playerName" class="player-name">
+            آهنگی انتخاب نشده
+        </div>
+
+        <div id="playerStatus" class="player-status">
+            آماده پخش
+        </div>
+    </div>
+
+    <div class="player-buttons">
+
+        <button
+            class="player-button"
+            onclick="previousSong()"
+        >
+            ⏮
+        </button>
+
+        <button
+            id="playerButton"
+            class="player-button main"
+            onclick="toggleAudio()"
+        >
+            ▶
+        </button>
+
+        <button
+            class="player-button"
+            onclick="nextSong()"
+        >
+            ⏭
+        </button>
+
+        <button
+            class="player-button"
+            onclick="closePlayer()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
 </div>
 
 <audio id="audio"></audio>
 
+<!-- SETTINGS -->
+
+<div
+    id="overlay"
+    class="overlay"
+    onclick="closeSettings()"
+></div>
+
+<div id="settingsPanel" class="settings-panel">
+
+    <div class="settings-header">
+
+        <h2>⚙️ تنظیمات سایت</h2>
+
+        <button
+            class="close-settings"
+            onclick="closeSettings()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+    <!-- THEME -->
+
+    <div class="setting">
+
+        <div class="switch-row">
+
+            <div>
+                <div class="setting-title">
+                    🌙 حالت شب
+                </div>
+
+                <div class="setting-description">
+                    تغییر بین حالت تاریک و روشن
+                </div>
+            </div>
+
+            <div
+                id="themeSwitch"
+                class="switch"
+                onclick="toggleTheme()"
+            ></div>
+
+        </div>
+
+    </div>
+
+    <!-- ANIMATION -->
+
+    <div class="setting">
+
+        <div class="switch-row">
+
+            <div>
+                <div class="setting-title">
+                    ✨ انیمیشن‌ها
+                </div>
+
+                <div class="setting-description">
+                    فعال یا غیرفعال کردن افکت‌های حرکتی
+                </div>
+            </div>
+
+            <div
+                id="animationSwitch"
+                class="switch on"
+                onclick="toggleAnimations()"
+            ></div>
+
+        </div>
+
+    </div>
+
+    <!-- FONT SIZE -->
+
+    <div class="setting">
+
+        <div class="setting-title">
+            🔠 اندازه نوشته
+        </div>
+
+        <div class="setting-description">
+            اندازه متن سایت را تنظیم کن.
+        </div>
+
+        <input
+            id="fontSize"
+            class="range"
+            type="range"
+            min="14"
+            max="21"
+            value="16"
+            oninput="changeFontSize(this.value)"
+        >
+
+    </div>
+
+    <!-- ACCENT -->
+
+    <div class="setting">
+
+        <div class="setting-title">
+            🎨 رنگ سایت
+        </div>
+
+        <div class="setting-description">
+            رنگ اصلی NAVA را انتخاب کن.
+        </div>
+
+        <div class="colors">
+
+            <button
+                class="color color-purple active"
+                onclick="setAccent('purple',this)"
+            ></button>
+
+            <button
+                class="color color-blue"
+                onclick="setAccent('blue',this)"
+            ></button>
+
+            <button
+                class="color color-pink"
+                onclick="setAccent('pink',this)"
+            ></button>
+
+            <button
+                class="color color-green"
+                onclick="setAccent('green',this)"
+            ></button>
+
+            <button
+                class="color color-orange"
+                onclick="setAccent('orange',this)"
+            ></button>
+
+        </div>
+
+    </div>
+
+    <button
+        class="reset"
+        onclick="resetSettings()"
+    >
+        🔄 بازگردانی تنظیمات
+    </button>
+
+</div>
+
+<!-- BOTTOM MENU -->
+
+<nav class="bottom-menu">
+
+    <a href="#home" class="active">
+        <span>🏠</span>
+        <span>خانه</span>
+    </a>
+
+    <a href="#search">
+        <span>🔎</span>
+        <span>جستجو</span>
+    </a>
+
+    <a href="#" onclick="showFavorites(event)">
+        <span>❤️</span>
+        <span>محبوب‌ها</span>
+    </a>
+
+    <a href="#" onclick="showAllSongs(event)">
+        <span>🎵</span>
+        <span>آهنگ‌ها</span>
+    </a>
+
+</nav>
+
+<div id="toast" class="toast"></div>
+
 <script>
-const songsBox = document.getElementById("songs");
-const search = document.getElementById("search");
-const audio = document.getElementById("audio");
-const player = document.getElementById("player");
-const playerName = document.getElementById("playerName");
-const playerButton = document.getElementById("playerButton");
+
+const songsBox =
+    document.getElementById("songs");
+
+const search =
+    document.getElementById("search");
+
+const audio =
+    document.getElementById("audio");
+
+const player =
+    document.getElementById("player");
+
+const playerName =
+    document.getElementById("playerName");
+
+const playerStatus =
+    document.getElementById("playerStatus");
+
+const playerButton =
+    document.getElementById("playerButton");
+
+const progressBar =
+    document.getElementById("progressBar");
 
 let songs = [];
+
+let filteredSongs = [];
+
 let currentIndex = -1;
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("navaFavorites") || "[]"
+    );
+
+
+/* =========================
+   LOAD SONGS
+========================= */
 
 async function loadSongs(){
 
     try{
 
-        const response = await fetch("/songs.json");
+        const response =
+            await fetch("songs.json");
 
-        if(!response.ok){
+        if(!response.ok)
             throw new Error("songs.json not found");
-        }
 
-        songs = await response.json();
+        songs =
+            await response.json();
+
+        if(!Array.isArray(songs))
+            throw new Error("Invalid songs.json");
+
+        filteredSongs = songs;
 
         renderSongs(songs);
 
@@ -393,215 +1109,31 @@ async function loadSongs(){
 
         songsBox.innerHTML = `
             <div class="empty">
-                آهنگی پیدا نشد 🎵
+                ❌ آهنگی پیدا نشد.<br>
+                فایل songs.json را بررسی کن.
             </div>
         `;
     }
 }
 
+
+/* =========================
+   RENDER SONGS
+========================= */
+
 function renderSongs(list){
+
+    filteredSongs = list;
 
     if(!list.length){
 
         songsBox.innerHTML = `
             <div class="empty">
-                آهنگی با این مشخصات پیدا نشد 🔎
+                😕 آهنگی پیدا نشد.
             </div>
         `;
 
         return;
     }
 
-    songsBox.innerHTML = "";
-
-    list.forEach((song,index)=>{
-
-        const item = document.createElement("div");
-
-        item.className = "song";
-
-        item.innerHTML = `
-            <button class="play" onclick="playSong(${index})">
-                ▶
-            </button>
-
-            <div class="song-info">
-                <div class="song-name">${escapeHtml(song.name)}</div>
-                <div class="song-type">موزیک</div>
-            </div>
-
-            <div class="cover">🎵</div>
-        `;
-
-        songsBox.appendChild(item);
-    });
-}
-
-function playSong(index){
-
-    if(!songs[index]) return;
-
-    currentIndex = index;
-
-    const song = songs[index];
-
-    audio.src = "/music/" + encodeURIComponent(song.file);
-
-    playerName.textContent = song.name;
-
-    player.style.display = "flex";
-
-    audio.play()
-        .then(()=>{
-            playerButton.textContent = "❚❚";
-        })
-        .catch(()=>{
-            playerButton.textContent = "▶";
-        });
-}
-
-function toggleAudio(){
-
-    if(audio.paused){
-
-        audio.play();
-
-        playerButton.textContent = "❚❚";
-
-    }else{
-
-        audio.pause();
-
-        playerButton.textContent = "▶";
-    }
-}
-
-function closePlayer(){
-
-    audio.pause();
-
-    audio.src = "";
-
-    player.style.display = "none";
-}
-
-audio.addEventListener("ended",()=>{
-
-    if(currentIndex + 1 < songs.length){
-
-        playSong(currentIndex + 1);
-
-    }else{
-
-        playerButton.textContent = "▶";
-    }
-});
-
-search.addEventListener("input",()=>{
-
-    const value = search.value.trim().toLowerCase();
-
-    const filtered = songs.filter(song =>
-        song.name.toLowerCase().includes(value)
-    );
-
-    renderSongs(filtered);
-});
-
-document.querySelectorAll(".category").forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        document
-            .querySelectorAll(".category")
-            .forEach(b=>b.classList.remove("active"));
-
-        button.classList.add("active");
-
-        /*
-         * فعلاً همه آهنگ‌ها از یک پوشه می‌آیند.
-         * وقتی دسته‌بندی واقعی اضافه کنیم همین بخش
-         * بدون دست زدن به ظاهر سایت قابل توسعه است.
-         */
-
-        renderSongs(songs);
-    });
-
-});
-
-function escapeHtml(text){
-
-    const div = document.createElement("div");
-
-    div.textContent = text;
-
-    return div.innerHTML;
-}
-
-loadSongs();
-</script>
-
-
-<style>
-.bottom-menu{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  height:72px;
-  background:rgba(20,18,27,.97);
-  border-top:1px solid #33303d;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:99999;
-  direction:rtl;
-  box-shadow:0 -5px 20px rgba(0,0,0,.35);
-}
-.bottom-menu a{
-  flex:1;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-  color:#aaa;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:bold;
-}
-.bottom-menu a span{
-  font-size:24px;
-  line-height:1;
-}
-.bottom-menu a.active,
-.bottom-menu a:hover{
-  color:#b52cff;
-}
-body{
-  padding-bottom:85px !important;
-}
-</style>
-
-<nav class="bottom-menu">
-  <a href="/" class="active">
-    <span>🏠</span>
-    خانه
-  </a>
-  <a href="#search">
-    <span>🔎</span>
-    جستجو
-  </a>
-  <a href="#favorites">
-    <span>❤️</span>
-    محبوب‌ها
-  </a>
-  <a href="#music">
-    <span>🎵</span>
-    آهنگ‌ها
-  </a>
-</nav>
-
-</body>
-</html>
+    songsBox.
